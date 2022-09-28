@@ -110,7 +110,7 @@ class SessionMiddleware implements MiddlewareInterface
      */
     private function addCookieToResponse(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        $cookieValue = $this->session->getId() == '';
+        $cookieValue = $this->session->getId() ?? '';
         $cookieExpires = $cookieValue ? 1 : time() + $this->timeout;
 
         return $response->withAddedHeader(
